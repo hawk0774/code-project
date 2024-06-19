@@ -1,0 +1,18 @@
+---
+# tasks file for Filebeat-install
+  - name: Get Filebeat
+    apt:
+      deb: https://mirror.yandex.ru/mirrors/elastic/7/pool/main/f/filebeat/filebeat-7.15.0-amd64.deb
+          
+  
+  - name: Copy files from role's files directory 
+    template: 
+      src: "/etc/ansible/roles/Filebeat-install/templates/filebeat.j2" 
+      dest: "/etc/filebeat/filebeat.yml"
+       
+
+  - name: Restart Filebeat
+    systemd:
+      name: filebeat.service
+      state: restarted
+      enabled: yes

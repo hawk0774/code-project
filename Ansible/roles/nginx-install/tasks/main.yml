@@ -1,0 +1,23 @@
+---
+- name: Install nginx
+  apt: 
+    name: nginx 
+    state: latest
+    update_cache: yes
+
+- name: start
+  service:
+    name: nginx
+    state: started
+    enabled: yes
+      
+      
+- name: Создание HTML-странички
+  copy:
+    content: "<html><head><title>Все работает</title></head><body><h1>Diplom</h1></body></html>"
+    dest: /var/www/html/index.html
+    owner: www-data
+    group: www-data
+    
+  notify:
+  - Restart 

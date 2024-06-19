@@ -1,0 +1,23 @@
+---
+# tasks file for elastic-install
+  - name: Update apt
+    apt:
+      update_cache: yes
+
+
+  - name: Get elastic
+    apt:
+      deb: https://mirror.yandex.ru/mirrors/elastic/7/pool/main/e/elasticsearch/elasticsearch-7.15.0-amd64.deb
+     
+
+  - name: Copy files from role's files directory 
+    copy: 
+      src: "/etc/ansible/roles/elastic-install/files/elastic_conf.yml" 
+      dest: "/etc/elasticsearch/elasticsearch.yml"
+      
+
+  - name: Restart elastic
+    systemd:
+      name: elasticsearch.service
+      state: restarted
+      enabled: yes

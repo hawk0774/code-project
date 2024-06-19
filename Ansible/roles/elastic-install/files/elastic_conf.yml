@@ -1,0 +1,16 @@
+# ======================== Elasticsearch Configuration =========================
+
+# ----------------------------------- Paths ------------------------------------
+
+path.data: /var/lib/elasticsearch
+
+path.logs: /var/log/elasticsearch
+
+
+# ---------------------------------- Network -----------------------------------
+
+discovery.seed_hosts: ["127.0.0.1", "[::1]"]
+network.host: 127.0.0.1
+http.host: 0.0.0.0
+http.port: 9200
+discovery.type: single-node

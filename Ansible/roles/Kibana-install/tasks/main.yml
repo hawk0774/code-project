@@ -1,0 +1,18 @@
+---
+# tasks file for Kibana-install
+  - name: Get Kibana
+    apt:
+      deb: https://mirror.yandex.ru/mirrors/elastic/7/pool/main/k/kibana/kibana-7.15.0-amd64.deb
+
+
+  - name: Copy files from role's files directory 
+    template: 
+      src: "/etc/ansible/roles/Kibana-install/templates/kibana.j2"
+      dest: "/etc/kibana/kibana.yml"
+
+
+  - name: Restart Kibana
+    systemd:
+      daemon_reload: true
+      name: kibana.service
+      state: started

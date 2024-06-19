@@ -1,0 +1,22 @@
+- hosts: webserv
+  gather_facts: yes
+  roles:
+    - nginx-install
+    - zabbix-agent-install
+    - Filebeat-install
+
+- hosts: zab
+  gather_facts: yes
+  roles:
+    - install-zabbix
+
+- hosts: elk
+  gather_facts: yes
+  roles:
+    - elastic-install
+
+- hosts: kibana
+  gather_facts: yes
+  roles:
+    - Kibana-install
+
